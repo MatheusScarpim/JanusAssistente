@@ -8,6 +8,7 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt
 
+RUN pip install faiss-gpu
 # Agora copia o restante do código
 COPY . /app
 RUN python index_form.py
