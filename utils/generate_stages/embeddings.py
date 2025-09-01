@@ -1,16 +1,13 @@
-from sentence_transformers import SentenceTransformer, util
-from langchain_huggingface import HuggingFaceEmbeddings  # Updated import
+from sentence_transformers import util
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from config.settings import LOCAL_MODEL_PATH, INDEX_PATH, TOP_K
-
-# Carrega o modelo de embeddings offline
-model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
-print("✅ Modelo SentenceTransformer carregado online!")
 
 # Configura HuggingFaceEmbeddings para usar o modelo online
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
 )
+print("✅ Modelo HuggingFaceEmbeddings carregado!")
 
 # Carrega o índice FAISS, com fallback se não encontrado
 try:

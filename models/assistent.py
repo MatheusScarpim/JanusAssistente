@@ -70,14 +70,14 @@ SCHEMA = {
             "openBy": {"type": "string", "description": "Usuário que abriu o processo"}
         }
     },
-    "branch" : {
-        "_id": {"type": "ObjectId", "description": "Identificador único do branch"},
-        "name": {"type": "string", "description": "Nome do branch"}
-    },
-    "sector": {
-        "_id": {"type": "ObjectId", "description": "Identificador único do setor"},
-        "name": {"type": "string", "description": "Nome do setor"}
-    }
+    # "branch" : {
+    #     "_id": {"type": "ObjectId", "description": "Identificador único do branch"},
+    #     "name": {"type": "string", "description": "Nome do branch"}
+    # },
+    # "sector": {
+    #     "_id": {"type": "ObjectId", "description": "Identificador único do setor"},
+    #     "name": {"type": "string", "description": "Nome do setor"}
+    # }
 
 }
 

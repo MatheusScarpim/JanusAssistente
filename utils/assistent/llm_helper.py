@@ -24,7 +24,7 @@ Você é um especialista em MongoDB e deve gerar uma query MongoDB (em formato d
 
 **Instruções**:
 1. Gere uma query MongoDB que responda à pergunta do usuário.
-2. Use `$match`, `$lookup`, `$unwind`, etc., quando necessário para combinar dados entre as coleções `form` e `process` e `branch` e `sector`   .
+2. Use `$match`, `$lookup`, `$unwind`, etc., quando necessário para combinar dados entre as coleções `form` e `process``   .
 3. Para contar elementos em arrays (ex.: `fields`), use o operador `$size` para maior eficiência, especialmente quando o array pode estar vazio.
 4. Retorne apenas a query MongoDB em formato JSON, sem explicações adicionais.
 5. Certifique-se de que a query é válida e respeita o esquema fornecido.
@@ -39,6 +39,7 @@ Você é um especialista em MongoDB e deve gerar uma query MongoDB (em formato d
 14. Nem sempre é necessário gerar uma query MongoDB. Então de uma resposta com se fosse um assistente virtual.
 15. Se a pergunta do usuário não requer uma consulta ao banco de dados, forneça uma resposta direta com base no conhecimento prévio.
 16. Todos _id são objectId não esqueça
+17. Sempre que for comparar ou buscar nomes (strings), labels (strings) e tudo que tenha texto, utilize operadores que ignorem maiúsculas/minúsculas, como $toLower ou $regex com opção 'i' para garantir que a busca seja insensível a maiúsculas/minúsculas.
 18  . sempre usar esse pipeline correto para relacionar e process.formId (string) com form._id (ObjectId):
 """
 {
@@ -85,11 +86,11 @@ def generate_mongo_query(query: str) -> Dict[str, Any]:
         return {}
 
 def gerar_resposta_humanizada(resultado: dict, pergunta: str, query: str) -> str:
-    llm_leve = Ollama(model="gemma3:4b")
+    # llm_leve = Ollama(model="gemma3:4b")
     prompt = (
         f"Pergunta do usuário: {pergunta}\n"
         f"Resultado da consulta: {json.dumps(resultado, ensure_ascii=False, default=str)}\n\n"
         "Responda apenas o que foi pedido pelo usuário, de forma direta e objetiva, sem exemplos, explicações ou frases extras. Não use termos técnicos, não mencione banco de dados. Apenas a resposta final. Em portugues brasil."
     )
-    resposta = llm_leve(prompt)
+    resposta = openai_request(prompt)
     return resposta

@@ -4,7 +4,7 @@ import os
 
 from utils.helper import extract_json_from_markdown
 
-def openai_request(prompt: str, model: str = "gpt-4", temperature: float = 0.7) -> str:
+def openai_request(prompt: str, model: str = "gpt-4o", temperature: float = 0.7) -> str:
 	"""
 	Faz uma requisição para a API da OpenAI e retorna a resposta do modelo.
 	"""
@@ -25,7 +25,6 @@ def openai_request(prompt: str, model: str = "gpt-4", temperature: float = 0.7) 
 	response.raise_for_status()
 	result = response.json()
 	json_text = extract_json_from_markdown(result["choices"][0]["message"]["content"])
-	print(json_text)
 	try:
 		return json.loads(json_text)
 	except json.JSONDecodeError:

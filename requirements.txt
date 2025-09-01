@@ -1,0 +1,11 @@
+flask
+flask-cors
+requests
+pymongo
+sentence-transformers
+langchain
+langchain-community
+langchain-core
+langchain-huggingface
+langchain-ollama
+faiss-gpu

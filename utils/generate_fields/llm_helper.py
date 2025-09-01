@@ -4,10 +4,10 @@ from models.assistent import SCHEMA
 from models.field import create_field, normalize_type
 import os
 
-from langchain_ollama import OllamaLLM
+# from langchain_ollama import OllamaLLM
 
-OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
-llm = OllamaLLM(model=OLLAMA_MODEL)
+# OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3")
+# llm = OllamaLLM(model=OLLAMA_MODEL)
 
 def generate_fields_prompt(name, num_fields, context):
     prompt_template = f"""
